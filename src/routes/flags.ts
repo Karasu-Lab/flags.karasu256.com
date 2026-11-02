@@ -8,6 +8,8 @@ export async function handleGetFlag(env: ResolvedEnv, pathtoflags: string): Prom
   const parsed = flagPathSchema.safeParse(pathtoflags);
   if (!parsed.success) return flagResponse({ ok: false, error: 'Invalid flag path' }, 400);
 
+  if (!env.FLAGS) return flagResponse({ ok: false, error: 'Failed to evaluate the flag' }, 500);
+
   try {
     const details = await env.FLAGS.getBooleanDetails(parsed.data.split('/').join('-'), false);
     if (details.errorCode === 'FLAG_NOT_FOUND') return flagResponse({ ok: false, error: 'Flag not found' }, 404);
