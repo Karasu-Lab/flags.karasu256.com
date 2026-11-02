@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "flags-karasu256-com",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": false,
+    },
+  },
+  "routes": [{ "pattern": "flags.karasu256.com", "custom_domain": true }],
+  "vars": {
+    "APP_ENV": "production",
+  },
+  "flagship": [{ "binding": "FLAGS", "app_id": "<APP_ID>" }],
+  "preview_urls": true,
+  "previews": {
+    "vars": {
+      "APP_ENV": "preview",
+    },
+  },
+  "env": {
+    "local": {
+      "routes": [],
+      "vars": {
+        "APP_ENV": "local",
+      },
+    },
+  },
+}
