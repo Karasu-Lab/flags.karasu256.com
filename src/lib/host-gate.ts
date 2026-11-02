@@ -1,22 +1,22 @@
 import type { ResolvedEnv } from '../constants';
 import { flagResponse } from '../schemas/flag-response';
 
-const LOCAL_HOSTNAMES = ['localhost', '127.0.0.1'];
-
-export function isAllowedOrigin(env: ResolvedEnv, origin: string | null): boolean {
-  if (!origin) return false;
-  let hostname: string;
+function originOf(value: string | null): string | null {
+  if (!value) return null;
   try {
-    hostname = new URL(origin).hostname;
+    return new URL(value).origin;
   } catch {
-    return false;
+    return null;
   }
-  if (hostname === env.BASE_DOMAIN || hostname.endsWith(`.${env.BASE_DOMAIN}`)) return true;
-  return env.APP_ENV === 'local' && LOCAL_HOSTNAMES.includes(hostname);
+}
+
+export function isAllowedOrigin(env: ResolvedEnv, value: string | null): boolean {
+  const origin = originOf(value);
+  return origin !== null && env.ALLOWED_ORIGINS.includes(origin);
 }
 
 export function rejectUnlistedHost(env: ResolvedEnv, request: Request): Response | null {
   const source = request.headers.get('origin') ?? request.headers.get('referer');
   if (isAllowedOrigin(env, source)) return null;
-  return flagResponse({ ok: false, error: 'Requests are only accepted from karasu256.com hosts' }, 403);
+  return flagResponse({ ok: false, error: 'Requests are only accepted from allowed origins' }, 403);
 }
