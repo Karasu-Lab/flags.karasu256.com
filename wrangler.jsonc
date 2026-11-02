@@ -14,7 +14,7 @@
   "vars": {
     "APP_ENV": "production",
   },
-  "flagship": [{ "binding": "FLAGS", "app_id": "<APP_ID>" }],
+  "flagship": [{ "binding": "FLAGS", "app_id": "52dd6dfc-5a44-4f0e-a5da-a4deb83e1529" }],
   "preview_urls": true,
   "previews": {
     "vars": {
