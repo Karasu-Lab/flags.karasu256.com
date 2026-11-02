@@ -20,6 +20,7 @@
     "vars": {
       "APP_ENV": "preview",
     },
+    "flagship": [{ "binding": "FLAGS", "app_id": "52dd6dfc-5a44-4f0e-a5da-a4deb83e1529" }],
   },
   "env": {
     "local": {
