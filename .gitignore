@@ -4,6 +4,7 @@ pnpm-debug.log*
 
 node_modules
 .direnv
+.turbo
 dist
 .wrangler
 dist-ssr
