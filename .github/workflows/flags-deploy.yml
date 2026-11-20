@@ -24,7 +24,7 @@ jobs:
           worker-name: flags-karasu256-com
 
   preview:
-    if: github.ref_name != 'main'
+    if: github.ref_name != 'main' && github.actor != 'dependabot[bot]'
     environment: preview
     runs-on: ubuntu-latest
     permissions:
