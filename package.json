@@ -11,7 +11,7 @@
     "types": "wrangler types --env-interface Env"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.62.5",
+    "@cloudflare/vite-plugin": "^1.70.0",
     "@types/node": "^26.6.4",
     "typescript": "~7.0.2",
     "vite": "^8.3.8",
